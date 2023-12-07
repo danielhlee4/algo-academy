@@ -23,6 +23,32 @@ var isValid = function(s) {
     return stack.length === 0
 };
 
+// merge intervals
+
+const merge = (intervals) => {
+    const sortedIntervals = intervals.sort((a, b) => a[0] - b[0]);
+    const merged = [sortedIntervals[0]];
+
+    for (let i = 1; i < sortedIntervals.length; i++) {
+        const nextInterval = sortedIntervals[i];
+        let lastInterval = merged[merged.length - 1];
+        let merge = false;
+
+        if (nextInterval[0] <= lastInterval[1]) {
+            if (nextInterval[1] >= lastInterval[1]) {
+                lastInterval[1] = nextInterval[1];
+            }
+            merge = true;
+        }
+
+        if (!merge) {
+            merged.push(nextInterval);
+        }
+    }
+
+    return merged;
+};
+
 // container with most water
 
 const maxArea = (height) => {
