@@ -129,3 +129,26 @@ const containsNearbyDuplicate = (nums, k) => {
 
     return false;
 }
+
+// longest substring without repeating characters
+
+const lengthOfLongestSubstring = (s) => {
+    const window = new Set();
+    let left = 0;
+    let right = 0;
+    let maxLength = 0;
+
+    while (right < s.length) {
+        while (window.has(s.charAt(right))) {
+            // run until window is valid again
+            window.delete(s.charAt(left));
+            left++;
+        }
+
+        maxLength = Math.max(maxLength, right - left + 1);
+        window.add(s.charAt(right));
+        right++;
+    }
+
+    return maxLength;
+};
