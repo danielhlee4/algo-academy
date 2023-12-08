@@ -49,6 +49,35 @@ const merge = (intervals) => {
     return merged;
 };
 
+// merge intervals, hash organization
+
+const mergeWithHash = (intervals) => {
+    const sortedIntervals = intervals.sort((a, b) => a[0] - b[0]);
+    const stack = [intervals[0]];
+  
+    for (let i = 1; i < sortedIntervals.length; i++) {
+      const currInt = {
+        'start': sortedIntervals[i][0],
+        'end': sortedIntervals[i][1]
+      }
+  
+      const lastIntIdx = stack.length - 1
+  
+      const lastInt = {
+        'start': stack[lastIntIdx][0],
+        'end': stack[lastIntIdx][1]
+      }
+  
+      if (currInt['start'] <= lastInt['end'] && currInt['end'] > lastInt['end']) {
+        stack[lastIntIdx][1] = currInt['end']
+      } else if (currInt['start'] > lastInt['end']) {
+        stack.push(sortedIntervals[i])
+      }
+    }
+  
+    return stack;
+};
+
 // container with most water
 
 const maxArea = (height) => {
