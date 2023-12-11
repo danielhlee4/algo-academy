@@ -81,31 +81,21 @@ const mergeWithHash = (intervals) => {
 // container with most water
 
 const maxArea = (height) => {
-    let rightIndex = height.length - 1;
-    let leftIndex = 0;
-    let rightHeight = height[rightIndex];
-    let leftHeight = height[leftIndex];
+    let left = 0;
+    let right = height.length - 1;
     let max = 0;
 
-    while (leftIndex < rightIndex) {
-        if (leftHeight < rightHeight && leftHeight * (rightIndex - leftIndex) > max) {
-            max = leftHeight * (rightIndex - leftIndex)
-        } else if (leftHeight >= rightHeight && rightHeight * (rightIndex - leftIndex) > max) {
-            max = rightHeight * (rightIndex - leftIndex)
-        }
-
-        // console.log(max, leftIndex, rightIndex, rightIndex-leftIndex)
-        if (leftHeight < rightHeight) {
-            leftIndex++
-            leftHeight = height[leftIndex]
+    while (left < right) {
+        if (height[left] >= height[right]) {
+            max = Math.max(max, height[right] * (right - left));
+            right--;
         } else {
-            rightIndex--
-            rightHeight = height[rightIndex]
+            max = Math.max(max, height[left] * (right - left));
+            left++;
         }
     }
 
     return max;
-
 };
 
 // contains duplicate II
