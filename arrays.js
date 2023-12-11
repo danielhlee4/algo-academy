@@ -169,3 +169,30 @@ const twoSum = (numbers, target) => {
         }
     }
 };
+
+// roman integer
+
+const romanToInt = (s) => {
+    const numerals = {
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000
+    }
+
+    let total = 0;
+
+    for (let i = 0; i < s.length; i++) {
+        if (numerals[s.charAt(i + 1)] > numerals[s.charAt(i)]) {
+            total += numerals[s.charAt(i + 1)] - numerals[s.charAt(i)]
+            i++;
+        } else {
+            total += numerals[s.charAt(i)]
+        }
+    }
+
+    return total;
+};
