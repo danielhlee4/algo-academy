@@ -11,3 +11,26 @@ def two_sum(nums, target)
         end
     end
 end
+
+# valid parentheses
+
+def is_valid(s)
+    stack = []
+    closing_brackets = {
+        ')' => '(',
+        ']' => '[',
+        '}' => '{'
+    }
+
+    s.each_char do |ele|
+        if !closing_brackets.key?(ele)
+            stack.push(ele)
+        elsif closing_brackets[ele] == stack[-1]
+            stack.pop
+        else
+            return false
+        end
+    end
+
+    stack.empty?
+end
