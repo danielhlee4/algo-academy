@@ -80,4 +80,16 @@ def count_digits_sum(x, y)
   
     count == 0 ? -1 : count
 end
+
+# smallest non dup
+
+def smallest_non_dup(arr)
+    count = Hash.new(0)
   
+    arr.each { |num| count[num] += 1 }
+    non_dup = arr.select { |num| count[num] == 1 }
+  
+    return -1 if non_dup.empty?
+  
+    non_dup.min
+end
