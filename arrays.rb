@@ -55,3 +55,15 @@ def max_area(height)
 
     max_area
 end
+
+# mean and mode
+
+def mean_mode(n, numbers)
+    mean = numbers.sum / numbers.length.to_f
+  
+    frequency = Hash.new(0)
+    numbers.each { |num| frequency[num] += 1 }
+    mode = frequency.max_by { |_, freq| freq }[0]
+  
+    "#{mean.floor} #{mode}"
+end
