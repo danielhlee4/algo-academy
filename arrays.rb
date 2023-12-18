@@ -67,3 +67,17 @@ def mean_mode(n, numbers)
   
     "#{mean.floor} #{mode}"
 end
+
+# count digits sum
+
+def count_digits_sum(x, y)
+    count = 0
+  
+    (1..x).each do |num|
+      sum = num.digits.sum
+      count += 1 if sum == y
+    end
+  
+    count == 0 ? -1 : count
+end
+  
