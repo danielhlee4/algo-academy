@@ -214,3 +214,22 @@ const minSubArrayLen = (target, nums) => {
     return minLength === Infinity ? 0 : minLength;
   
 };
+
+// minimize cost
+
+function minimizeCost(arr) {
+    let totalCost = 0;
+  
+    while (arr.length > 1) {
+      arr.sort((a, b) => a - b);
+      const sum = arr[0] + arr[1];
+      totalCost += sum;
+      arr.splice(0, 2, sum);
+    }
+  
+    return totalCost;
+  }
+  
+  const arr = [25, 10, 20];
+  const result = minimizeCost(arr);
+  console.log("The minimum possible cost:", result);
