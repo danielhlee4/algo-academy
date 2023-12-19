@@ -233,3 +233,38 @@ function minimizeCost(arr) {
   const arr = [25, 10, 20];
   const result = minimizeCost(arr);
   console.log("The minimum possible cost:", result);
+
+  // strong and weak passwords
+
+  function getPasswordStrength(passwords, commonWords) {
+    const weakPasswords = [];
+    
+    const allNumerics = new Set('0123456789');
+    const commonWordsSet = new Set(commonWords.map(word => word.toLowerCase()));
+  
+    function isNumeric(password) {
+      return [...password].every(char => allNumerics.has(char));
+    }
+  
+    function isWeak(password) {
+      const lowerCasePassword = password.toLowerCase();
+      return (
+        commonWordsSet.has(lowerCasePassword) ||
+        [...commonWordsSet].some(word => lowerCasePassword.includes(word.toLowerCase())) ||
+        isNumeric(password) ||
+        password.toUpperCase() === password ||
+        password.toLowerCase() === password ||
+        password.length < 6
+      );
+    }
+  
+    for (const password of passwords) {
+      if (isWeak(password)) {
+        weakPasswords.push('weak');
+      } else {
+        weakPasswords.push('strong');
+      }
+    }
+  
+    return weakPasswords;
+  }
