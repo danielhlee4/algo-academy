@@ -35,3 +35,19 @@ const setZeroes = matrix => {
         }
     }
 };
+
+// group anagrams
+
+const groupAnagrams = (strs) => {
+    const hash = {};
+
+    for (let s of strs) {
+        let key = s.split("").sort().join("");
+        if (!hash[key]) {
+            hash[key] = [];
+        }
+        hash[key].push(s);
+    }
+
+    return Object.values(hash)
+};
