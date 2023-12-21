@@ -51,3 +51,44 @@ const groupAnagrams = (strs) => {
 
     return Object.values(hash)
 };
+
+// valid sudoku
+
+const isValidSudoku = (board) => {
+    const row = {};
+    const col = {};
+    const box = {};
+
+    for (let r = 0; r < board.length; r++) {
+        if (row[r] === undefined) {
+            row[r] = new Set();
+        }
+
+        for (let c = 0; c < board[0].length; c++) {
+            if (col[c] === undefined) {
+                col[c] = new Set();
+            }
+
+            let currVal = board[r][c];
+
+            if (currVal != ".") {
+                let boxCoord = `${Math.floor(r/3)},${Math.floor(c/3)}`
+
+                if (box[boxCoord] === undefined) {
+                    box[boxCoord] = new Set();
+                }
+
+                if (row[r].has(currVal) || col[c].has(currVal) || box[boxCoord].has(currVal)) {
+                    return false
+                }
+
+                row[r].add(currVal);
+                col[c].add(currVal);
+                box[boxCoord].add(currVal);
+            }
+
+        }
+    }
+
+    return true;
+};
