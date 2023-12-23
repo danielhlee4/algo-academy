@@ -92,3 +92,21 @@ const isValidSudoku = (board) => {
 
     return true;
 };
+
+// longest consecutive sequence
+
+const longestConsecutive = (nums) => {
+    if (nums.length === 0) return 0;
+    const set = new Set(nums);
+    let max = 1;
+
+    for (let num of set) {
+        if (!set.has(num - 1)) {
+            for (let i = 1; set.has(num + i); i++) {
+                max = Math.max(i + 1, max);
+            }
+        }
+    }
+
+    return max;
+};
