@@ -43,6 +43,35 @@ const merge = (left, right) => {
 
 // sort characters by frequency
 
+// const frequencySort = s => {
+//     const count = {};
+
+//     s.split("").forEach(char => {
+//         if (count[char] === undefined) count[char] = 0;
+//         count[char]++
+//     })
+
+//     let sorted = "";
+
+//     let i = s.length;
+//     const keys = Object.keys(count);
+
+//     while (sorted.length < s.length) {
+//         keys.forEach(key => {
+//             let j = count[key];
+//             if (count[key] === i) {
+//                 while (j > 0) {
+//                     sorted += key;
+//                     j--;
+//                 }
+//             }
+//         })
+//         i--;
+//     }
+
+//     return sorted;
+// };
+
 const frequencySort = s => {
     const c = {};
     const chars = s.split('');
