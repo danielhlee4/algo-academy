@@ -40,3 +40,32 @@ const merge = (left, right) => {
 
     return merged.concat(left).concat(right);
 }
+
+// sort characters by frequency
+
+const frequencySort = s => {
+    const c = {};
+    const chars = s.split('');
+    const n = chars.length;
+
+    chars.forEach(char => {
+        if (c[char] === undefined) c[char] = 0;
+        c[char]++;
+    })
+
+    const bucket = Array.from({length: n + 1}, () => [])
+
+    Object.entries(c).forEach(([char, freq]) => {
+        bucket[freq].push(char);
+    })
+
+    let res = '';
+
+    for (let freq = n; freq > 0; freq--) {
+        bucket[freq].forEach(char => {
+            res += char.repeat(freq);
+        })
+    }
+
+    return res;
+};
