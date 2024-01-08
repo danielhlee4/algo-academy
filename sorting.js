@@ -118,3 +118,26 @@ const search = (nums, target) => {
 
     return -1;
 };
+
+// recursive b search
+
+function bsearch(arr, target) {
+    if (arr.length === 0) return -1;
+
+    const mid = Math.floor(arr.length/2);
+
+    if (target === arr[mid]) return mid;
+    const left = arr.slice(0, mid);
+    const right = arr.slice(mid + 1);
+
+    if (target < arr[mid]) {
+        return bsearch(left, target);
+    } else {
+        let result = bsearch(right, target);
+        if (result === -1) {
+            return result;
+        } else {
+            return result + mid + 1;
+        }
+    }
+}
